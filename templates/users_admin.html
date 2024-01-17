@@ -1,0 +1,94 @@
+{% extends 'baseadmin.html' %}
+
+{% block head %}
+    {{ super() }}
+    <!-- Enlaces a los archivos CSS de AdminLTE -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminlte/css/adminlte.css') }}">
+    <!-- Otros archivos CSS si es necesario -->
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <!-- Enlaces a los archivos JavaScript de AdminLTE -->
+    <script src="{{ url_for('static', filename='adminlte/js/adminlte.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para mostrar el modal de confirmación
+        function confirmarEliminacion(id) {
+            $('#confirmarEliminacionModal').modal('show');
+            // Configurar el botón de confirmación dentro del modal
+            $('#confirmarEliminacionBoton').click(function () {
+                // Enviar una solicitud POST para eliminar el usuario
+                $.ajax({
+                    url: "/admin/usuarios/eliminar/" + id,
+                    method: "POST",
+                    success: function (data) {
+                        // Manejar la respuesta exitosa, por ejemplo, recargar la página
+                        location.reload();
+                    },
+                    error: function (error) {
+                        // Manejar errores, por ejemplo, mostrar un mensaje de error
+                        console.error("Error al eliminar el usuario: ", error);
+                    }
+                });
+            });
+            // Configurar el botón de cancelar dentro del modal
+            $('#cancelarEliminacionBoton').click(function () {
+                // Cerrar el modal sin realizar ninguna acción
+                $('#confirmarEliminacionModal').modal('hide');
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1>Lista de Usuarios</h1>
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in lista_usuarios %}
+                    <tr>
+                        <td>{{ usuario[0] }}</td>
+                        <td>{{ usuario[1] }}</td>
+                        <td>{{ usuario[2] }}</td>
+                        <td>{{ usuario[3] }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-danger" onclick="confirmarEliminacion('{{ usuario[0] }}')">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmarEliminacionModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que quieres eliminar este usuario?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmarEliminacionBoton">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

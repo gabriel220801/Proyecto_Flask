@@ -1,0 +1,66 @@
+/* Agrega estilos CSS adicionales aquí según sea necesario */
+.fila {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%; /* Ajusta el ancho de la tarjeta según tus necesidades */
+    margin-bottom: 20px;
+}
+
+.realizar-compra-container {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.realizar-compra-btn {
+    width: 200px; /* Ajusta el ancho del botón según tus necesidades */
+    padding: 12px;
+    background-color: #3498db; /* Cambia el color de fondo según tus necesidades */
+    color: #fff; /* Cambia el color del texto según tus necesidades */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Tamaño del texto */
+    transition: background-color 0.3s ease; /* Agrega transición para un efecto suave al pasar el ratón */
+    margin: 0 auto; /* Centro horizontalmente */
+}
+
+.realizar-compra-btn:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.eliminar-btn {
+    background-color: #e74c3c; /* Cambia el color de fondo del botón eliminar a rojo */
+    color: #fff; /* Cambia el color del texto según tus necesidades */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Ajusta el tamaño del texto para hacer el botón un poco más grande */
+    padding: 14px; /* Ajusta el relleno para hacer el botón un poco más grande */
+    transition: background-color 0.3s ease; /* Agrega transición para un efecto suave al pasar el ratón */
+}
+
+.eliminar-btn:hover {
+    background-color: #c0392b; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.comprar-todo-btn {
+    width: 200px; /* Ajusta el ancho del botón según tus necesidades */
+    padding: 12px;
+    background-color: #e67e22; /* Cambia el color de fondo del botón "Comprar Todo" */
+    color: #fff; /* Cambia el color del texto según tus necesidades */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Tamaño del texto */
+    transition: background-color 0.3s ease; /* Agrega transición para un efecto suave al pasar el ratón */
+    margin: 0 auto; /* Centro horizontalmente */
+}
+
+.comprar-todo-btn:hover {
+    background-color: #d35400; /* Cambia el color de fondo al pasar el ratón para el botón "Comprar Todo" */
+}
